@@ -1,0 +1,49 @@
+#version 400 core
+
+precision mediump float;
+
+in vec2 p_TexCoord;
+
+layout(location = 0)out vec4 o_fragColor;
+
+uniform sampler2D s_texture;
+uniform float time;
+uniform float posY;
+
+float speed = 0.27;
+
+float ball(vec2 p, float fx, float fy, float ax, float ay)
+{
+	vec2 r = vec2(p.x + sin(time*speed / 2.7 * fx) * ax * 2.7, p.y + cos(time*speed/ 2.0 * fy) * ay * 4.0);
+	return .027 / length(r / sin(fy * time * 0.1));
+}
+
+void main()
+{
+    vec2 resolution = vec2(720, 640);
+    vec2 p = ( gl_FragCoord.xy / resolution.xy ) * 2.0 - 1.0;
+	p.x *= resolution.x / resolution.y;
+
+    p.x += 0.25;
+    p.y -= 0.56 + posY * 0.77776;
+
+    float col = 0.0 ,col2 = 0.0;
+	col += ball(p, 1.0, 2.0, 0.03, 0.03);
+	col += ball(p, 2.5, 2.5, 0.04, 0.03);
+	col += ball(p, 2.0, 3.0, 0.05, 0.03);
+	/*col += ball(p, 2.5, 3.5, 0.06, 0.04);
+	col += ball(p, 3.0, 4.0, 0.07, 0.03);*/
+
+	col2 += ball(p, 2.0, 7.0, 0.03, 0.03);
+	col2 += ball(p, 2.5, 7.5, 0.04, 0.03);
+	col2 += ball(p, 3.0, 7.0, 0.05, 0.03);
+	col2 += ball(p, 9.5, 3.5, 0.06, 0.04);
+
+
+    //vec4 color = texture(s_texture, p_TexCoord);
+
+	vec4 frColor = vec4(pow(col * 0.27 * col2, 2.7/col), col * 0.27, col2 * 0.1 * sin(time*speed), 1.0) + vec4(col2 * 0.5, col * col2, col2 * 0.9, 1.);
+	float trans = (frColor.x + frColor.y + frColor.z)/3.0;
+	o_fragColor = vec4(frColor.x, frColor.y, frColor.z, pow(trans, 1.6));
+   // o_fragColor = texture(s_texture, p_TexCoord);
+}

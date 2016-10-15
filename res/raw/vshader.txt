@@ -1,0 +1,18 @@
+#version 400 core
+
+layout(location = 0) in vec4 a_position;
+layout(location = 1) in vec2 texCoor;
+layout(location = 2) in vec3 vertexNormal;
+
+out vec2 p_TexCoord;
+
+
+uniform mat4 u_mvMatrix;
+uniform mat4 u_pMatrix;
+
+void main()
+{
+    p_TexCoord = texCoor;
+    mat4 mvp = u_mvMatrix * u_pMatrix;
+    gl_Position = mvp * a_position;
+}

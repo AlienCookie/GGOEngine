@@ -1,0 +1,15 @@
+#version 400 core
+
+precision mediump float;
+
+in vec4 p_color;
+in vec2 p_texCoord;
+
+out vec4 o_fragColor;
+
+uniform sampler2D s_texture;
+
+void main()
+{
+    o_fragColor = texture(s_texture, p_texCoord) * p_color;
+}

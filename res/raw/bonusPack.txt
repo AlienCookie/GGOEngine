@@ -1,0 +1,3 @@
+/res/raw/blackdiamond.ggo
+/res/raw/greendiamond.ggo
+/res/raw/pinkdiamond.ggo

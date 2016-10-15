@@ -1,0 +1,2 @@
+/res/raw/scene1.ggo
+/res/raw/scene2.ggo

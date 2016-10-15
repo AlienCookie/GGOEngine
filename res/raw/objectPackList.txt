@@ -1,0 +1,8 @@
+/res/raw/testObjectPack.obj
+/res/raw/ship.obj
+/res/raw/player.ggo
+/res/raw/scene2.ggo
+/res/raw/gameObjectPack.obj
+/res/raw/icecube.ggo
+/res/bird.ggo
+/res/raw/skull.obj
